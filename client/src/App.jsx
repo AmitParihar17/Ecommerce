@@ -9,6 +9,7 @@ import MyProfile from './pages/Myprofile'
 import Orders from './pages/Orders'
 import Footer from './components/Footer'
 import SignUP from './pages/SignUP'
+import ProductDetails from './pages/ProductDetails'
 
  
  const App = () => {
@@ -19,6 +20,7 @@ import SignUP from './pages/SignUP'
          <Route path="/" element={<Home />} />
          <Route path="/about" element={<About />} />
          <Route path="/collection" element={<Collection />} />
+         <Route path='/collection/:id' element={<ProductDetails />} />
          <Route path="/contact" element={<Contact />} />
          <Route path='/my-profile' element={<MyProfile/>} />
          <Route path='/orders' element={<Orders />}  />

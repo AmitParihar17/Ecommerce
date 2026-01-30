@@ -5,7 +5,7 @@ import { useShopContext } from '../context/ShopContext'
 const ProductCard = ({id,image,price,name}) => {
     const {currency} = useShopContext()
   return (
-    <Link to={`/product/${id}`}>
+    <Link to={`/collection/${id}`}>
     <div className='overflow-hidden'>
         <img className='hover:scale-110 object-cover transition-transform duration-300 ease-in-out' src={image[0]} alt="" />
     </div>
