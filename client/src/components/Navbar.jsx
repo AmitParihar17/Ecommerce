@@ -5,7 +5,7 @@ import { useShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { navigate } = useShopContext();
+  const { navigate,cartItems } = useShopContext();
 
   return (
     <>
@@ -94,13 +94,13 @@ const Navbar = () => {
 
           {/* CART */}
           <div className="relative">
-            <img
+            <img onClick={() => navigate("/cart")}
               src={assets.cart_icon}
               className="w-5 cursor-pointer"
               alt="cart"
             />
             <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-              0
+             {cartItems.length === 0 ? 0 : cartItems.quantity}
             </span>
           </div>
         </div>
@@ -114,8 +114,8 @@ const Navbar = () => {
         />
       </nav>
 
-      {/* ================= MOBILE DRAWER MENU ================= */}
-      {/* ================= MOBILE DRAWER MENU ================= */}
+      {/*  MOBILE DRAWER MENU  */}
+      
       {showMenu && (
         <div className="fixed inset-0 bg-white z-50 p-6 md:hidden flex flex-col">
           {/* CLOSE ICON */}
@@ -176,7 +176,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* SEARCH */}
-        <button className="flex flex-col items-center text-xs text-gray-600">
+        <button  className="flex flex-col items-center text-xs text-gray-600">
           <img src={assets.search_icon} className="w-5" alt="search" />
           Search
         </button>

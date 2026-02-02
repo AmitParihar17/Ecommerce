@@ -10,24 +10,30 @@ import Orders from './pages/Orders'
 import Footer from './components/Footer'
 import SignUP from './pages/SignUP'
 import ProductDetails from './pages/ProductDetails'
+import ScrolltoTop from './components/ScrolltoTop'
+import Cart from './pages/Cart'
+import { Toaster } from "react-hot-toast";
+
 
  
  const App = () => {
    return (
      <div>
-      <Navbar />
+       <Toaster position="top-right" reverseOrder={false} />
+       <Navbar />
+       <ScrolltoTop />
        <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/about" element={<About />} />
          <Route path="/collection" element={<Collection />} />
-         <Route path='/collection/:id' element={<ProductDetails />} />
+         <Route path="/collection/:id" element={<ProductDetails />} />
          <Route path="/contact" element={<Contact />} />
-         <Route path='/my-profile' element={<MyProfile/>} />
-         <Route path='/orders' element={<Orders />}  />
-         <Route path='/signup' element={<SignUP />} />
-         
+         <Route path="/my-profile" element={<MyProfile />} />
+         <Route path="/orders" element={<Orders />} />
+         <Route path="/signup" element={<SignUP />} />
+         <Route path="/cart" element={<Cart />} />
        </Routes>
-       
+
        <Footer />
      </div>
    );
