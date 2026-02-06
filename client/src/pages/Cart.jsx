@@ -4,8 +4,15 @@
  import { assets } from "../assets/assets";
 
  const Cart = () => {
-   const { cartItems, currency, shippingFee, updateQuantity } =
-     useShopContext();
+   const {
+     cartItems,
+     currency,
+     shippingFee,
+     increaseQuantity,
+     navigate,
+     removeFromCart,
+     decreseQuantity,
+   } = useShopContext();
 
    const subTotal = cartItems.reduce(
      (total, item) => total + item.price * item.quantity,
@@ -19,7 +26,29 @@
        <Title text1="YOUR" text2="CART" />
 
        {cartItems.length === 0 && (
-         <p className="text-center mt-6">Your cart is empty</p>
+         <div className="flex flex-col items-center justify-center mt-16 text-center">
+           <img
+             src={assets.emptyCart}
+             alt="Empty Cart"
+             className="w-150 mb-6 opacity-80"
+           />
+
+           <h2 className="text-xl font-semibold mb-2">
+             Your cart feels lonely 😔
+           </h2>
+
+           <p className="text-gray-500 max-w-sm">
+             Looks like you haven’t added anything yet. Go ahead and explore
+             some amazing products!
+           </p>
+
+           <button
+             onClick={() => navigate("/collection")}
+             className="mt-6 px-6 py-2 bg-black text-white rounded cursor-pointer"
+           >
+             Continue Shopping
+           </button>
+         </div>
        )}
 
        {cartItems.map((item) => (
@@ -43,11 +72,10 @@
              </div>
            </div>
 
-           {/* 🔥 CENTER : QUANTITY */}
            <div className="absolute left-1/2 -translate-x-1/2">
              <div className="flex items-center border px-3 py-1 gap-3">
                <button
-                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                 onClick={() => decreseQuantity(item.id)}
                  disabled={item.quantity === 1}
                  className={`text-lg ${
                    item.quantity === 1
@@ -63,7 +91,7 @@
                </span>
 
                <button
-                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                 onClick={() => increaseQuantity(item.id)}
                  className="text-lg cursor-pointer"
                >
                  +
@@ -71,14 +99,17 @@
              </div>
            </div>
 
-           {/* RIGHT : DELETE */}
            <div className="ml-auto">
-             <img src={assets.bin_icon} alt="" className="w-5 cursor-pointer" />
+             <img
+               onClick={() => removeFromCart(item.id)}
+               src={assets.bin_icon}
+               alt=""
+               className="w-5 cursor-pointer"
+             />
            </div>
          </div>
        ))}
 
-       {/* TOTALS */}
        <div className="mt-10 max-w-md ml-auto  p-4">
          <Title text1="CART" text2="TOTALS" />
 

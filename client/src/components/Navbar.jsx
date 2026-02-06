@@ -100,7 +100,7 @@ const Navbar = () => {
               alt="cart"
             />
             <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-             {cartItems.length === 0 ? 0 : cartItems.quantity}
+             { cartItems.length}
             </span>
           </div>
         </div>
