@@ -13,6 +13,7 @@ import ProductDetails from './pages/ProductDetails'
 import ScrolltoTop from './components/ScrolltoTop'
 import Cart from './pages/Cart'
 import { Toaster } from "react-hot-toast";
+import DeliveryInformation from './pages/DeliveryInformation'
 
 
  
@@ -32,6 +33,7 @@ import { Toaster } from "react-hot-toast";
          <Route path="/orders" element={<Orders />} />
          <Route path="/signup" element={<SignUP />} />
          <Route path="/cart" element={<Cart />} />
+         <Route path="/delivery/information" element={<DeliveryInformation />} />
        </Routes>
 
        <Footer />

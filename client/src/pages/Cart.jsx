@@ -73,7 +73,7 @@
            <div className="absolute left-1/2 -translate-x-1/2">
              <div className="flex items-center border px-3 py-1 gap-3">
                <button
-                 onClick={() => decreseQuantity(item.id,item.size)}
+                 onClick={() => decreseQuantity(item.id, item.size)}
                  disabled={item.quantity === 1}
                  className={`text-lg ${
                    item.quantity === 1
@@ -89,7 +89,7 @@
                </span>
 
                <button
-                 onClick={() => increaseQuantity(item.id,item.size)}
+                 onClick={() => increaseQuantity(item.id, item.size)}
                  className="text-lg cursor-pointer"
                >
                  +
@@ -99,7 +99,7 @@
 
            <div className="ml-auto">
              <img
-               onClick={() => removeFromCart(item.id,item.size)}
+               onClick={() => removeFromCart(item.id, item.size)}
                src={assets.bin_icon}
                alt=""
                className="w-5 cursor-pointer"
@@ -136,7 +136,10 @@
              </p>
            </div>
 
-           <button className="w-full bg-black text-white py-2 mt-5">
+           <button
+             onClick={() => navigate("/delivery/information")}
+             className="w-full bg-black text-white py-2 mt-5 cursor-pointer rounded-sm"
+           >
              Proceed to checkout
            </button>
          </div>
