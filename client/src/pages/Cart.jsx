@@ -53,7 +53,7 @@
 
        {cartItems.map((item) => (
          <div
-           key={item.id}
+           key={`${item.id}-${item.size}`}
            className="relative border-t border-b py-4 flex items-center"
          >
            {/* LEFT : IMAGE + DETAILS */}
@@ -62,9 +62,7 @@
 
              <div>
                <p className="font-medium">{item.name}</p>
-               <p className="text-sm text-gray-500">
-                 Size: {item.size.join(", ")}
-               </p>
+               <p className="text-sm text-gray-500">Size: Size: {item.size}</p>
                <p className="font-semibold">
                  {currency}
                  {item.price}
@@ -75,7 +73,7 @@
            <div className="absolute left-1/2 -translate-x-1/2">
              <div className="flex items-center border px-3 py-1 gap-3">
                <button
-                 onClick={() => decreseQuantity(item.id)}
+                 onClick={() => decreseQuantity(item.id,item.size)}
                  disabled={item.quantity === 1}
                  className={`text-lg ${
                    item.quantity === 1
@@ -91,7 +89,7 @@
                </span>
 
                <button
-                 onClick={() => increaseQuantity(item.id)}
+                 onClick={() => increaseQuantity(item.id,item.size)}
                  className="text-lg cursor-pointer"
                >
                  +
@@ -101,7 +99,7 @@
 
            <div className="ml-auto">
              <img
-               onClick={() => removeFromCart(item.id)}
+               onClick={() => removeFromCart(item.id,item.size)}
                src={assets.bin_icon}
                alt=""
                className="w-5 cursor-pointer"
@@ -110,37 +108,39 @@
          </div>
        ))}
 
-       <div className="mt-10 max-w-md ml-auto  p-4">
-         <Title text1="CART" text2="TOTALS" />
+       {cartItems.length > 0 && (
+         <div className="mt-10 max-w-md ml-auto  p-4">
+           <Title text1="CART" text2="TOTALS" />
 
-         <div className="flex justify-between mt-4 text-sm">
-           <p>Subtotal</p>
-           <p>
-             {currency}
-             {subTotal}
-           </p>
+           <div className="flex justify-between mt-4 text-sm">
+             <p>Subtotal</p>
+             <p>
+               {currency}
+               {subTotal}
+             </p>
+           </div>
+
+           <div className="flex justify-between mt-2 text-sm">
+             <p>Shipping Fee</p>
+             <p>
+               {currency}
+               {shippingFee}
+             </p>
+           </div>
+
+           <div className="flex justify-between font-bold mt-3 text-lg">
+             <p>Total</p>
+             <p>
+               {currency}
+               {total}
+             </p>
+           </div>
+
+           <button className="w-full bg-black text-white py-2 mt-5">
+             Proceed to checkout
+           </button>
          </div>
-
-         <div className="flex justify-between mt-2 text-sm">
-           <p>Shipping Fee</p>
-           <p>
-             {currency}
-             {shippingFee}
-           </p>
-         </div>
-
-         <div className="flex justify-between font-bold mt-3 text-lg">
-           <p>Total</p>
-           <p>
-             {currency}
-             {total}
-           </p>
-         </div>
-
-         <button className="w-full bg-black text-white py-2 mt-5">
-           Proceed to checkout
-         </button>
-       </div>
+       )}
      </div>
    );
  };

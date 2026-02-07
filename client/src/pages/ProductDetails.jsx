@@ -4,25 +4,20 @@ import { assets } from "../assets/assets";
 import { useParams } from "react-router-dom";
 import Title from "../components/Title";
 import ProductCard from "../components/ProductCard";
-import {toast} from "react-hot-toast"
+import { toast } from "react-hot-toast";
 
 const ProductDetails = () => {
-  const { currency, products,addToCart } = useShopContext();
+  const { currency, products, addToCart } = useShopContext();
   const { id } = useParams();
 
   const product = products.find((item) => item._id === id);
 
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [mainImage, setMainImage] = useState("");
-  const [selectSize, setSelectedSize] = useState([]);
+  const [selectSize, setSelectedSize] = useState("");
 
   const handleSizeClick = (size) => {
-    
-    setSelectedSize((prev) =>
-      prev.includes(size)
-        ? prev.filter((item) => item !== size)
-        : [...prev, size],
-    );
+    setSelectedSize(size);
   };
 
   // set main image + related products
@@ -99,9 +94,12 @@ const ProductDetails = () => {
             <div className="flex gap-2">
               {["S", "M", "L", "XL", "XXL"].map((size) => (
                 <button
-                  onClick={() => handleSizeClick(size)}
                   key={size}
-                  className={` cursor-pointer border px-4 py-1 hover:bg-black hover:text-white ${selectSize.includes(size) ? "bg-black text-white" : "bg-white text-black"}`}
+                  onClick={() => handleSizeClick(size)}
+                  className={`cursor-pointer border px-4 py-1 
+      hover:bg-black hover:text-white
+      ${selectSize === size ? "bg-black text-white" : "bg-white text-black"}
+    `}
                 >
                   {size}
                 </button>
@@ -112,8 +110,8 @@ const ProductDetails = () => {
           <button
             type="button"
             onClick={() => {
-              if (selectSize.length === 0) {
-                toast.error("Please select at least one size");
+              if (!selectSize) {
+                toast.error("Please select a size");
                 return;
               }
 
@@ -152,7 +150,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* ================= RELATED PRODUCTS ================= */}
+      {/*  RELATED PRODUCTS  */}
       <div className="mt-16">
         <Title text1="Related" text2="Products" />
 

@@ -10,38 +10,55 @@ export const ShopContextProvider = ({ children }) => {
   const currency = "$";
   const shippingFee = 10;
 
-  const addToCart = (product, selectSize) => {
-    setCartItems((prev) => {
-      return [
-        ...prev,
-        {
-          id: product._id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
-          size: selectSize,
-          quantity: 1,
-        },
-      ];
-    });
-  };
+   const addToCart = (product, selectSize) => {
+     setCartItems((prev) => {
+       const existingItem = prev.find(
+         (item) => item.id === product._id && item.size === selectSize,
+       );
 
-  const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+       if (existingItem) {
+         return prev.map((item) =>
+           item.id === product._id && item.size === selectSize
+             ? { ...item, quantity: item.quantity + 1 }
+             : item,
+         );
+       }
 
-  const increaseQuantity = (id) => {
+      
+       return [
+         ...prev,
+         {
+           id: product._id,
+           name: product.name,
+           price: product.price,
+           image: product.image,
+           size: selectSize,
+           quantity: 1,
+         },
+       ];
+     });
+   };
+
+
+ const removeFromCart = (id, size) => {
+   setCartItems((prev) =>
+     prev.filter((item) => !(item.id === id && item.size === size)),
+   );
+ };
+
+
+  const increaseQuantity = (id,size) => {
     setCartItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+        item.id === id && item.size === size ? { ...item, quantity: item.quantity + 1 } : item,
       ),
     );
   };
 
-  const decreseQuantity = (id) => {
+  const decreseQuantity = (id,size) => {
     setCartItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+        item.id === id && item.size === size ? { ...item, quantity: item.quantity - 1 } : item,
       ),
     );
   };

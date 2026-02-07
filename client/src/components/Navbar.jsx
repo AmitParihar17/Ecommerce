@@ -64,8 +64,15 @@ const Navbar = () => {
             />
 
             <ul
-              className="absolute right-0 top-7 w-32 bg-gray-100 rounded-md py-2 
-              opacity-0 invisible group-hover:opacity-100 group-hover:visible transition"
+              className="
+    absolute right-0 top-full mt-1 z-50
+    w-32 bg-gray-100 rounded-md py-2 shadow-md
+    opacity-0
+    pointer-events-none
+    group-hover:opacity-100
+    group-hover:pointer-events-auto
+    transition border
+  "
             >
               <li
                 onClick={() => navigate("/my-profile")}
@@ -94,13 +101,14 @@ const Navbar = () => {
 
           {/* CART */}
           <div className="relative">
-            <img onClick={() => navigate("/cart")}
+            <img
+              onClick={() => navigate("/cart")}
               src={assets.cart_icon}
               className="w-5 cursor-pointer"
               alt="cart"
             />
             <span className="absolute -top-2 -right-2 bg-black text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-             { cartItems.length}
+              {cartItems.length}
             </span>
           </div>
         </div>
@@ -115,7 +123,7 @@ const Navbar = () => {
       </nav>
 
       {/*  MOBILE DRAWER MENU  */}
-      
+
       {showMenu && (
         <div className="fixed inset-0 bg-white z-50 p-6 md:hidden flex flex-col">
           {/* CLOSE ICON */}
@@ -176,7 +184,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* SEARCH */}
-        <button  className="flex flex-col items-center text-xs text-gray-600">
+        <button className="flex flex-col items-center text-xs text-gray-600">
           <img src={assets.search_icon} className="w-5" alt="search" />
           Search
         </button>
@@ -189,7 +197,7 @@ const Navbar = () => {
           <img src={assets.cart_icon} className="w-5" alt="cart" />
           Cart
           <span className="absolute -top-1 right-1 bg-black text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-            0
+            {cartItems.length}
           </span>
         </NavLink>
 
