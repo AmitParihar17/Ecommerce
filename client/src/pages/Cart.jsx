@@ -137,7 +137,7 @@
            </div>
 
            <button
-             onClick={() => navigate("/delivery/information")}
+             onClick={() => navigate("/delivery-information")}
              className="w-full bg-black text-white py-2 mt-5 cursor-pointer rounded-sm"
            >
              Proceed to checkout

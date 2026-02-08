@@ -33,7 +33,7 @@ import DeliveryInformation from './pages/DeliveryInformation'
          <Route path="/orders" element={<Orders />} />
          <Route path="/signup" element={<SignUP />} />
          <Route path="/cart" element={<Cart />} />
-         <Route path="/delivery/information" element={<DeliveryInformation />} />
+         <Route path="/delivery-information" element={<DeliveryInformation />} />
        </Routes>
 
        <Footer />
