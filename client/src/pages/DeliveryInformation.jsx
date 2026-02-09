@@ -4,7 +4,7 @@
  import { assets } from "../assets/assets";
 
  const DeliveryInformation = () => {
-   const { currency, shippingFee } = useShopContext();
+   const { currency, shippingFee,navigate } = useShopContext();
 
    return (
      <div className="flex w-full gap-10 flex-col lg:flex-row">
@@ -139,7 +139,7 @@
            </div>
 
            <div className="flex justify-end mt-5">
-             <button className="bg-black text-white py-3 cursor-pointer px-6 rounded-sm hover:opacity-90">
+             <button onClick={() => navigate("/orders")} className="bg-black text-white py-3 cursor-pointer px-6 rounded-sm hover:opacity-90">
                Place Order
              </button>
            </div>
